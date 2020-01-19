@@ -1,0 +1,16 @@
+{
+    "target": "ES2017",
+    "rules": {
+      "max-line-length": false,
+      "curly": true,
+      "no-var-keyword": true,
+      "switch-default": true,
+      "triple-equals": false,
+      "no-duplicate-imports": true,
+      "no-unused-parameters": false,
+      "semicolon": [true, "always", "strict-bound-class-methods"],
+      "no-trailing-whitespace": [true, "ignore-template-strings", "ignore-comments", "ignore-blank-lines"],
+      "prefer-const": true,
+      "no-conditional-assignment": true
+    }
+  }
