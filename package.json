@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "myapp",
   "scripts": {
     "start": "npm run serve-production",
     "start-local": "rm -rf dist && npm run build && npm run watch",
