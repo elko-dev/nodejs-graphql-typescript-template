@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-NODE_ENV=development npm start
+NODE_ENV=development npm run serve

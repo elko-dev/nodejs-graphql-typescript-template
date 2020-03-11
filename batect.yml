@@ -14,6 +14,15 @@ containers:
         container: /code
         options: cached
     working_directory: /code
+  database:
+    build_directory: .batect/database
+    # ports:
+    #   - local: 5432
+    #     container: 5432
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: myapp
 tasks:
   dependencies:
     description: Install project dependencies
@@ -50,6 +59,8 @@ tasks:
         container: 4000
       container: build-env
       command: ./scripts/local.sh
+    dependencies:
+      - database
   deployDev:
     description: Deploy app to dev
     group: Deploy tasks
