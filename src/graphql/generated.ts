@@ -37,4 +37,5 @@ export type User = {
   email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  phoneNumber: Scalars['String'];
 };
