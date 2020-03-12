@@ -1,4 +1,4 @@
-import { post } from './Mutation/post';
+import { post } from './Mutation/user';
 
 export default {
   Query: {

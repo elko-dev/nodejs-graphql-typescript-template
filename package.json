@@ -7,7 +7,7 @@
     "build": "rimraf dist && npm run generate-gql-types && npm run build-ts && npm run tslint",
     "build-production": "npm run build-ts",
     "build-run": "npm run build-ts && node dist/server.js",
-    "serve": "npm run generate-gql-types && nodemon",
+    "serve": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
@@ -31,20 +31,21 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.8.3",
+    "@graphql-codegen/cli": "^1.7.0",
+    "@graphql-codegen/introspection": "1.13.0",
+    "@graphql-codegen/typescript": "1.13.0",
+    "@graphql-codegen/typescript-resolvers": "1.13.0",
     "@types/bcryptjs": "2.4.2",
+    "@types/graphql": "^14.5.0",
     "@types/jest": "^24.9.0",
     "@types/node": "^10.17.13",
-    "@types/graphql": "^14.5.0",
+    "concurrently": "^5.1.0",
     "dotenv-cli": "1.4.0",
     "jest": "^24.9.0",
     "nodemon": "1.19.4",
     "rimraf": "2.7.1",
     "ts-jest": "^24.3.0",
     "ts-node": "7.0.1",
-    "typescript": "^3.2.2",
-    "@graphql-codegen/cli": "^1.7.0",
-    "@graphql-codegen/typescript": "1.13.0",
-    "@graphql-codegen/typescript-resolvers": "1.13.0",
-    "@graphql-codegen/introspection": "1.13.0"
+    "typescript": "^3.2.2"
   }
 }

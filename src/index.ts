@@ -12,7 +12,7 @@ createConnection({
   synchronize: SYNCHRONIZE,
   url: DATBASE_URL,
   logging: LOGGING,
-  entities: ["dist/models/*.js"],
+  entities: ["./src/models/*{.ts,.js}"],
 }).then(() => { console.log('connected to db'); })
   .catch((err) => { console.log('error connecting to db ', err); });
 

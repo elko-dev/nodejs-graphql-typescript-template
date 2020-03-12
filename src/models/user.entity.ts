@@ -1,6 +1,6 @@
 import { IsString } from 'class-validator';
 import { Column, Entity } from 'typeorm';
-import { Model } from './Model';
+import { Model } from './model';
 
 @Entity()
 export class User extends Model {
