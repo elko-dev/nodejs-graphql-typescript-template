@@ -5,7 +5,6 @@ import { createConnection } from "typeorm";
 const DATBASE_URL = process.env.DATABASE_URL;
 const SYNCHRONIZE: boolean = process.env.TYPEORM_SYNCHRONIZE === "true" ? true : false;
 const LOGGING: boolean = process.env.TYPEORM_LOGGING === "true" ? true : false;
-// Create Database Connection
 
 createConnection({
   type: 'postgres',
