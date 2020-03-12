@@ -8,6 +8,11 @@ export type Scalars = {
   Float: number;
 };
 
+export type Error = {
+   __typename?: 'Error';
+  message: Scalars['String'];
+};
+
 export type Mutation = {
    __typename?: 'Mutation';
   createUser: User;
@@ -23,12 +28,12 @@ export type MutationCreateUserArgs = {
 
 export type Query = {
    __typename?: 'Query';
-  getUser: User;
+  getUser: UserQueryResponse;
 };
 
 
 export type QueryGetUserArgs = {
-  name: Scalars['String'];
+  id: Scalars['String'];
 };
 
 export type User = {
@@ -38,4 +43,10 @@ export type User = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   phoneNumber: Scalars['String'];
+};
+
+export type UserQueryResponse = {
+   __typename?: 'UserQueryResponse';
+  user?: Maybe<User>;
+  errors: Array<Maybe<Error>>;
 };

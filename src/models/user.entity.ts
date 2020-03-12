@@ -2,8 +2,8 @@ import { IsString } from 'class-validator';
 import { Column, Entity } from 'typeorm';
 import { Model } from './model';
 
-@Entity()
-export class User extends Model {
+@Entity({ name: "User" })
+export class UserEntity extends Model {
 
   @Column({ name: 'first_name', length: 51 })
   @IsString()
@@ -11,7 +11,7 @@ export class User extends Model {
 
   @Column({ type: 'varchar', name: 'last_name', nullable: true, length: 51 })
   @IsString()
-  lastName!: string | null;
+  lastName!: string;
 
   @Column()
   @IsString()
