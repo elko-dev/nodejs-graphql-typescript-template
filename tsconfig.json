@@ -1,15 +1,30 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "moduleResolution": "node",
     "module": "commonjs",
+    "target": "ES2017",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
     "sourceMap": true,
-    "rootDir": "src",
     "outDir": "dist",
-    "lib": [
-      "esnext", "dom"
-    ]
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/types/*"
+      ]
+    },
+    "strict": true /* Enable all strict type-checking options. */,
+    "noEmitOnError": true,
+    /* Additional Checks */
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": false /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
+    "esModuleInterop": true,
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": [
+    "src/**/*"
+  ]
 }

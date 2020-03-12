@@ -16,7 +16,8 @@ export type Mutation = {
 
 export type MutationCreateUserArgs = {
   email: Scalars['String'];
-  name: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
 
@@ -34,22 +35,6 @@ export type User = {
    __typename?: 'User';
   id: Scalars['ID'];
   email: Scalars['String'];
-  name: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
 };
-
-
-            import {gql} from 'apollo-server';
-            export const typeDefs = gql`type Mutation {
-  createUser(email: String!, name: String!, phoneNumber: String!): User!
-}
-
-type User {
-  id: ID!
-  email: String!
-  name: String!
-}
-
-type Query {
-  getUser(name: String!): User!
-}`;
-        
