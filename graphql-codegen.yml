@@ -3,4 +3,4 @@ generates:
   ./src/graphql/generated.ts:
     plugins:
       - 'typescript'
-      - 'gqlGenSchemaPlugin.js'
+      # - 'gqlGenSchemaPlugin.js'

@@ -11,7 +11,7 @@
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "tslint": "tslint -c tslint.json -p tsconfig.json --fix",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
@@ -19,11 +19,12 @@
     "generate-gql-types": "DEBUG=1 graphql-codegen --config graphql-codegen.yml"
   },
   "dependencies": {
-    "apollo-server": "^2.11.0",
     "bcryptjs": "2.4.3",
+    "class-validator": "^0.11.0",
     "graphql": "^14.5.4",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "8.5.1",
+    "pg": "^7.18.2",
     "prisma-client-lib": "^1.34.10",
     "tslint": "^5.20.1",
     "typeorm": "^0.2.24"

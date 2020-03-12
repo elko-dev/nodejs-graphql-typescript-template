@@ -2,4 +2,5 @@
 
 set -euo pipefail
 
-NODE_ENV=development npm run serve
+# Need to build for typeorm models
+npm run build &&  npm run serve
