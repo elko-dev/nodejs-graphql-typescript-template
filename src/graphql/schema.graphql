@@ -1,13 +1,14 @@
 type Mutation {
-  createUser(
+  signUpUser(
     email: String!
     firstName: String!
     lastName: String!
     phoneNumber: String!
-  ): User!
+    password: String!
+  ): UserResponse
 }
 
-type UserQueryResponse {
+type UserResponse {
   user: User
   errors: [Error]!
 }
@@ -21,7 +22,7 @@ type User {
 }
 
 type Query {
-  getUser(id: String!): UserQueryResponse!
+  getUser(id: String!): UserResponse!
 }
 
 type Error {

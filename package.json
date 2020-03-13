@@ -4,7 +4,7 @@
     "start": "npm run serve-production",
     "start-local": "rm -rf dist && npm run build && npm run watch",
     "serve-production": "node dist/index.js",
-    "build": "rimraf dist && npm run generate-gql-types && npm run build-ts && npm run tslint",
+    "build": "rimraf dist && npm run generate-gql-types && npm run decode-appcenter-config && npm run build-ts && npm run tslint",
     "build-production": "npm run build-ts",
     "build-run": "npm run build-ts && node dist/server.js",
     "serve": "nodemon dist/server.js",
@@ -16,11 +16,13 @@
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
     "test": "jest",
-    "generate-gql-types": "DEBUG=1 graphql-codegen --config graphql-codegen.yml"
+    "generate-gql-types": "DEBUG=1 graphql-codegen --config graphql-codegen.yml",
+    "decode-appcenter-config": "./scripts/secret_decode.sh"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
     "class-validator": "^0.11.0",
+    "firebase-admin": "^8.10.0",
     "graphql": "^14.5.4",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "8.5.1",
