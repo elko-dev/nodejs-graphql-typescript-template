@@ -1,10 +1,11 @@
-import { UserQueryResponse, QueryGetUserArgs, User, Error } from "../../graphql/generated";
+import { UserResponse, QueryGetUserArgs, User, Error } from "../../graphql/generated";
 import UserService from "../../service/user.service";
+import FirebaseAuth from "../../auth/firebase.auth";
 
 export const get = {
-    async getUser(_, args: QueryGetUserArgs): Promise<UserQueryResponse> {
+    async getUser(_, args: QueryGetUserArgs): Promise<UserResponse> {
         try {
-            const userService: UserService = new UserService();
+            const userService: UserService = new UserService(new FirebaseAuth());
 
             const user: User | undefined = await userService.getUser(args);
             return {
@@ -15,7 +16,7 @@ export const get = {
         }
         catch (error) {
             console.log(error);
-            const resposeError: Error = createError(error)
+            const resposeError: Error = createError(error);
             return {
                 errors: [resposeError],
                 user: null

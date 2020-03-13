@@ -15,20 +15,21 @@ export type Error = {
 
 export type Mutation = {
    __typename?: 'Mutation';
-  createUser: User;
+  signUpUser?: Maybe<UserResponse>;
 };
 
 
-export type MutationCreateUserArgs = {
+export type MutationSignUpUserArgs = {
   email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   phoneNumber: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Query = {
    __typename?: 'Query';
-  getUser: UserQueryResponse;
+  getUser: UserResponse;
 };
 
 
@@ -45,8 +46,8 @@ export type User = {
   phoneNumber: Scalars['String'];
 };
 
-export type UserQueryResponse = {
-   __typename?: 'UserQueryResponse';
+export type UserResponse = {
+   __typename?: 'UserResponse';
   user?: Maybe<User>;
   errors: Array<Maybe<Error>>;
 };

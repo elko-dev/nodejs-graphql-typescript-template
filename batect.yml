@@ -63,6 +63,8 @@ tasks:
         TYPEORM_SYNCHRONIZE: "true"
         TYPEORM_ENTITIES: dist/models/*.js
         TYPEORM_LOGGING: "true"
+        GOOGLE_APPLICATION_CREDENTIALS: config/spawn-platform.json
+
     dependencies:
       - database
   deployDev:

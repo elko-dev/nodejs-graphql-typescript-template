@@ -21,4 +21,8 @@ export class UserEntity extends Model {
   @IsString()
   phoneNumber!: string;
 
+  @Column({ type: 'varchar', name: 'auth_id', nullable: true })
+  @IsString()
+  authId!: string;
+
 }
