@@ -8,27 +8,33 @@ export type Scalars = {
   Float: number;
 };
 
+export type Error = {
+   __typename?: 'Error';
+  message: Scalars['String'];
+};
+
 export type Mutation = {
    __typename?: 'Mutation';
-  createUser: User;
+  signUpUser?: Maybe<UserResponse>;
 };
 
 
-export type MutationCreateUserArgs = {
+export type MutationSignUpUserArgs = {
   email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   phoneNumber: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type Query = {
    __typename?: 'Query';
-  getUser: User;
+  getUser: UserResponse;
 };
 
 
 export type QueryGetUserArgs = {
-  name: Scalars['String'];
+  id: Scalars['String'];
 };
 
 export type User = {
@@ -37,4 +43,11 @@ export type User = {
   email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  phoneNumber: Scalars['String'];
+};
+
+export type UserResponse = {
+   __typename?: 'UserResponse';
+  user?: Maybe<User>;
+  errors: Array<Maybe<Error>>;
 };

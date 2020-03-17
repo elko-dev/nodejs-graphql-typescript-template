@@ -1,13 +1,17 @@
 {
   "name": "myapp",
+  "config": {
+    "projectName": "myapp",
+    "webAppName": "1:157175452340:web:3edce90d5e1b6696f9bde1"
+  },
   "scripts": {
     "start": "npm run serve-production",
     "start-local": "rm -rf dist && npm run build && npm run watch",
     "serve-production": "node dist/index.js",
-    "build": "rimraf dist && npm run generate-gql-types && npm run build-ts && npm run tslint",
+    "build": "rimraf dist && npm run generate-gql-types && npm run decode-firebase-config && npm run build-ts && npm run tslint",
     "build-production": "npm run build-ts",
     "build-run": "npm run build-ts && node dist/server.js",
-    "serve": "npm run generate-gql-types && nodemon",
+    "serve": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
@@ -16,35 +20,41 @@
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
     "test": "jest",
-    "generate-gql-types": "DEBUG=1 graphql-codegen --config graphql-codegen.yml"
+    "generate-gql-types": "DEBUG=1 graphql-codegen --config graphql-codegen.yml",
+    "decode-firebase-config": "./scripts/secret_decode.sh && npm run fetch-firebase-web-config",
+    "fetch-firebase-web-config": "./scripts/secret_decode.sh $npm_package_config_projectName $npm_package_config_webAppName"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
     "class-validator": "^0.11.0",
+    "firebase-admin": "^8.10.0",
+    "googleapis": "^48.0.0",
     "graphql": "^14.5.4",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "8.5.1",
     "pg": "^7.18.2",
     "prisma-client-lib": "^1.34.10",
+    "request-promise": "^4.2.5",
     "tslint": "^5.20.1",
     "typeorm": "^0.2.24"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.8.3",
+    "@graphql-codegen/cli": "^1.7.0",
+    "@graphql-codegen/introspection": "1.13.0",
+    "@graphql-codegen/typescript": "1.13.0",
+    "@graphql-codegen/typescript-resolvers": "1.13.0",
     "@types/bcryptjs": "2.4.2",
+    "@types/graphql": "^14.5.0",
     "@types/jest": "^24.9.0",
     "@types/node": "^10.17.13",
-    "@types/graphql": "^14.5.0",
+    "concurrently": "^5.1.0",
     "dotenv-cli": "1.4.0",
     "jest": "^24.9.0",
     "nodemon": "1.19.4",
     "rimraf": "2.7.1",
     "ts-jest": "^24.3.0",
     "ts-node": "7.0.1",
-    "typescript": "^3.2.2",
-    "@graphql-codegen/cli": "^1.7.0",
-    "@graphql-codegen/typescript": "1.13.0",
-    "@graphql-codegen/typescript-resolvers": "1.13.0",
-    "@graphql-codegen/introspection": "1.13.0"
+    "typescript": "^3.2.2"
   }
 }
