@@ -3,3 +3,7 @@ node_modules
 .idea
 .vscode
 *.log
+firebase-auth-config.json
+config/spawn-platform.json
+serviceAccountKey.json
+src/config/web-services.json
