@@ -7,3 +7,4 @@ firebase-auth-config.json
 config/spawn-platform.json
 serviceAccountKey.json
 src/config/web-services.json
+config/web-spawn-platform.json
