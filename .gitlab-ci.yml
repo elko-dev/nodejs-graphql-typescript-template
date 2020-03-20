@@ -19,18 +19,24 @@ deployDev:
       - master
   stage: deployDev
   script:
-  - ./batect --docker-host tcp://docker:2375/ deployDev
+    - gem install dpl
+    - dpl --provider=heroku --app=dev-graphqltemplate --api-key=${HEROKU_API_KEY}
+  image: ruby:2.6
 deployStage:
   only:
       - master
   stage: deployStage
   when: manual
   script:
-  - ./batect --docker-host tcp://docker:2375/ deployStage
+    - gem install dpl
+    - dpl --provider=heroku --app=dev-graphqltemplate --api-key=${HEROKU_API_KEY}
+  image: ruby:2.6
 deployProd:
   only:
       - master
   stage: deployProd
   when: manual
   script:
-  - ./batect --docker-host tcp://docker:2375/ deployProd 
+    - gem install dpl
+    - dpl --provider=heroku --app=dev-graphqltemplate --api-key=${HEROKU_API_KEY}
+  image: ruby:2.6
