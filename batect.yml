@@ -64,7 +64,7 @@ tasks:
         TYPEORM_ENTITIES: dist/models/*.js
         TYPEORM_LOGGING: "true"
         GOOGLE_APPLICATION_CREDENTIALS: config/spawn-platform.json
-
+        AUTH_CONFIG: ${AUTH_CONFIG}
     dependencies:
       - database
   deployDev:
