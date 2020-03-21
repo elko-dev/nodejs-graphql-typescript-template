@@ -13,7 +13,10 @@ createConnection({
   logging: LOGGING,
   entities: ["./src/models/*{.ts,.js}"],
 }).then(() => { console.log('connected to db'); })
-  .catch((err) => { console.log('error connecting to db ', err); });
+  .catch((err) => {
+    console.log('error connecting to db ', err);
+    process.exit(1);
+  });
 
 const server = new GraphQLServer({
   typeDefs: './src/graphql/schema.graphql',
