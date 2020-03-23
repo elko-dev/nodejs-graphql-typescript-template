@@ -47,4 +47,24 @@ export default class UserService {
         }
         return Promise.reject("Not Found");
     }
+
+    public async getUserByFirebaseId(args: QueryGetUserArgs): Promise<User> {
+        const user: UserEntity | undefined = await this.repo.findOne({
+            where: {
+                authId: args.id,
+            }
+        });
+
+        if (user) {
+            const userResponse: User = {
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                id: String(user.id),
+                phoneNumber: user.phoneNumber
+            };
+            return userResponse;
+        }
+        return Promise.reject("Not Found");
+    }
 }
