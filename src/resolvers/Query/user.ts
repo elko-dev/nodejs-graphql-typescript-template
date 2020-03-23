@@ -28,7 +28,7 @@ export const get = {
         try {
             const userService: UserService = new UserService(new FirebaseAuth());
 
-            const user: User | undefined = await userService.getUser(args);
+            const user: User | undefined = await userService.getUserByFirebaseId(args);
             return {
                 errors: [],
                 user: user
