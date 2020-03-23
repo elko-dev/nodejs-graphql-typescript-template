@@ -1,6 +1,6 @@
 import * as firebase from "firebase/app";
 // For some reason have to do it this way? ¯\_(ツ)_/¯
-require('firebase/auth')
+require('firebase/auth');
 
 import { Auth, AuthDetails } from './auth';
 

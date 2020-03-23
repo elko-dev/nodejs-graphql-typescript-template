@@ -3,6 +3,7 @@ const rp = require('request-promise');
 const { google } = require('googleapis');
 const SCOPES = ['https://www.googleapis.com/auth/cloud-platform'];
 const WEB_CONFIG_FILE = "./src/config/web-spawn-platform.json";
+const WEB_CONFIG_PATH = "./src/config";
 const projectName = process.argv.slice(2)[0];
 const webAppName = process.argv.slice(2)[1];
 function getAccessToken() {
@@ -29,8 +30,9 @@ function getAccessToken() {
 const createWebFirebaseConfig = async (projectID, webAppID) => {
     return new Promise(async (resolve, reject) => {
         try {
+            await fs.promises.mkdir(WEB_CONFIG_PATH, { recursive: true });
             const webApp = await getWebConfig(projectID, webAppID);
-            fs.writeFileSync(WEB_CONFIG_FILE, JSON.stringify(webApp));
+            fs.writeFileSync(WEB_CONFIG_FILE, JSON.stringify(webApp), { recursive: true });
             console.log('succesfully generated Web config file')
             resolve()
         }
