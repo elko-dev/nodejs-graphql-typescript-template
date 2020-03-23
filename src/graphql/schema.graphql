@@ -23,6 +23,7 @@ type User {
 
 type Query {
   getUser(id: String!): UserResponse!
+  getUserByFirebaseId(id: String!): UserResponse!
 }
 
 type Error {
