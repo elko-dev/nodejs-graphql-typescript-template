@@ -19,7 +19,7 @@ deployDev:
   stage: deployDev
   script:
     - gem install dpl
-    - dpl --provider=heroku --app=dev-graphqltemplate --api-key=${HEROKU_API_KEY}
+    - dpl --provider=heroku --app=dev-myapp --api-key=${HEROKU_API_KEY}
   image: ruby:2.6
 deployStage:
   only:
@@ -28,7 +28,7 @@ deployStage:
   when: manual
   script:
     - gem install dpl
-    - dpl --provider=heroku --app=dev-graphqltemplate --api-key=${HEROKU_API_KEY}
+    - dpl --provider=heroku --app=dev-myapp --api-key=${HEROKU_API_KEY}
   image: ruby:2.6
 deployProd:
   only:
@@ -37,5 +37,5 @@ deployProd:
   when: manual
   script:
     - gem install dpl
-    - dpl --provider=heroku --app=dev-graphqltemplate --api-key=${HEROKU_API_KEY}
+    - dpl --provider=heroku --app=dev-myapp --api-key=${HEROKU_API_KEY}
   image: ruby:2.6
