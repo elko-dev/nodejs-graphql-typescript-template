@@ -1,10 +1,14 @@
 import { GraphQLServer } from 'graphql-yoga';
 import resolvers from './resolvers';
 import { createConnection } from "typeorm";
+import * as firebase from "firebase/app";
 
 const DATBASE_URL = process.env.DATABASE_URL;
 const SYNCHRONIZE: boolean = process.env.TYPEORM_SYNCHRONIZE === "true" ? true : false;
 const LOGGING: boolean = process.env.TYPEORM_LOGGING === "true" ? true : false;
+const serviceAccount = require("./config/web-spawn-platform.json");
+
+firebase.initializeApp(serviceAccount);
 
 createConnection({
   type: 'postgres',
