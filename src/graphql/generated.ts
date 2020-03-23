@@ -30,10 +30,16 @@ export type MutationSignUpUserArgs = {
 export type Query = {
    __typename?: 'Query';
   getUser: UserResponse;
+  getUserByFirebaseId: UserResponse;
 };
 
 
 export type QueryGetUserArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryGetUserByFirebaseIdArgs = {
   id: Scalars['String'];
 };
 
