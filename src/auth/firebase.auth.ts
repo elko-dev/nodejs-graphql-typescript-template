@@ -1,16 +1,23 @@
-import * as FirebaseAdmin from 'firebase-admin';
+import * as firebase from "firebase/app";
+// For some reason have to do it this way? ¯\_(ツ)_/¯
+require('firebase/auth')
+
 import { Auth, AuthDetails } from './auth';
 
-FirebaseAdmin.initializeApp();
-
 export default class FirebaseAuth implements Auth {
-    constructor(){
+
+    constructor() {
     }
 
-    public async registerUser(email: string, password: string): Promise<AuthDetails>{
-        const firebaseUser: FirebaseAdmin.auth.UserRecord = await FirebaseAdmin.auth().createUser({ email: email, password: password });
+    public async registerUser(email: string, password: string): Promise<AuthDetails> {
+        const firebaseUser: firebase.auth.UserCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        const user: firebase.User | null = firebaseUser.user;
+        if (!user) {
+            console.error('User id not generated');
+            Promise.reject();
+        }
         return {
-            id: firebaseUser.uid
+            id: user!.uid
         };
     }
 

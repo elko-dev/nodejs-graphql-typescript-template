@@ -2,7 +2,7 @@ const fs = require('fs');
 const rp = require('request-promise');
 const { google } = require('googleapis');
 const SCOPES = ['https://www.googleapis.com/auth/cloud-platform'];
-const WEB_CONFIG_FILE = "./config/web-spawn-platform.json";
+const WEB_CONFIG_FILE = "./src/config/web-spawn-platform.json";
 const projectName = process.argv.slice(2)[0];
 const webAppName = process.argv.slice(2)[1];
 function getAccessToken() {
