@@ -16,6 +16,7 @@ export type Error = {
 export type Mutation = {
    __typename?: 'Mutation';
   signUpUser?: Maybe<UserResponse>;
+  signUpAuthorizedUser?: Maybe<UserResponse>;
 };
 
 
@@ -23,8 +24,17 @@ export type MutationSignUpUserArgs = {
   email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  phoneNumber: Scalars['String'];
+  phoneNumber?: Maybe<Scalars['String']>;
   password: Scalars['String'];
+};
+
+
+export type MutationSignUpAuthorizedUserArgs = {
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  authId: Scalars['String'];
+  phoneNumber?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -49,7 +59,7 @@ export type User = {
   email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  phoneNumber: Scalars['String'];
+  phoneNumber?: Maybe<Scalars['String']>;
 };
 
 export type UserResponse = {

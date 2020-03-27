@@ -3,8 +3,15 @@ type Mutation {
     email: String!
     firstName: String!
     lastName: String!
-    phoneNumber: String!
+    phoneNumber: String
     password: String!
+  ): UserResponse
+  signUpAuthorizedUser(
+    email: String!
+    firstName: String!
+    lastName: String!
+    authId: String!
+    phoneNumber: String
   ): UserResponse
 }
 
@@ -18,7 +25,7 @@ type User {
   email: String!
   firstName: String!
   lastName: String!
-  phoneNumber: String!
+  phoneNumber: String
 }
 
 type Query {
