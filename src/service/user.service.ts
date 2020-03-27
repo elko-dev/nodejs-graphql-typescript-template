@@ -1,5 +1,8 @@
 import { UserEntity } from "../models/user.entity";
-import { QueryGetUserArgs, User, MutationSignUpUserArgs } from "../graphql/generated";
+import {
+    QueryGetUserArgs, User,
+    MutationSignUpUserArgs, MutationSignUpAuthorizedUserArgs
+} from "../graphql/generated";
 import { getRepository, Repository } from "typeorm";
 import { Auth, AuthDetails } from "../auth/auth";
 
@@ -17,7 +20,28 @@ export default class UserService {
         user.email = args.email;
         user.firstName = args.firstName;
         user.lastName = args.lastName;
-        user.phoneNumber = args.phoneNumber;
+        if (args.phoneNumber) {
+            user.phoneNumber = args.phoneNumber;
+        }
+        const newUser: UserEntity = await this.createUser(user);
+        return {
+            email: newUser.email,
+            firstName: newUser.firstName,
+            lastName: newUser.lastName,
+            id: String(newUser.id),
+            phoneNumber: newUser.phoneNumber
+        };
+    }
+
+    public async signUpAuthUser(args: MutationSignUpAuthorizedUserArgs): Promise<User> {
+        const user: UserEntity = new UserEntity();
+        user.authId = String(args.authId);
+        user.email = args.email;
+        user.firstName = args.firstName;
+        user.lastName = args.lastName;
+        if (args.phoneNumber) {
+            user.phoneNumber = args.phoneNumber;
+        }
         const newUser: UserEntity = await this.createUser(user);
         return {
             email: newUser.email,
