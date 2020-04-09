@@ -1,0 +1,1 @@
+We need this in order to have a config folder with appropriate permissions
