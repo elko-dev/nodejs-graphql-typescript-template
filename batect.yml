@@ -11,7 +11,7 @@ containers:
       home_directory: /home/container-user
 
   build-env:
-    image: larse514/circle-ci-node-docker:batect
+    image: node:13.8.0
     volumes:
       - local: .
         container: /code
@@ -22,7 +22,7 @@ containers:
     ports:
       - local: 5432
         container: 5432
-        
+
 tasks:
   dependencies:
     description: Install project dependencies
