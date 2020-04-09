@@ -11,6 +11,8 @@ jobs:
         run: |
           ./batect build
           ./batect test
+        env:
+          AUTH_CONFIG : ${{ secrets.AUTH_CONFIG }}
       - name: Deploy Dev
         run: |
           ./batect deployDev
