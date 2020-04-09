@@ -9,6 +9,7 @@ containers:
     run_as_current_user:
       enabled: true
       home_directory: /home/container-user
+
   build-env:
     image: larse514/circle-ci-node-docker:batect
     volumes:
@@ -21,6 +22,7 @@ containers:
     ports:
       - local: 5432
         container: 5432
+        
 tasks:
   dependencies:
     description: Install project dependencies
