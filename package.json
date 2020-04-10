@@ -19,6 +19,7 @@
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
     "test": "jest",
+    "deploy": "./scripts/deploy.sh $npm_package_config_projectName",
     "generate-gql-types": "DEBUG=1 graphql-codegen --config graphql-codegen.yml",
     "decode-firebase-config": "./scripts/secret_decode.sh && npm run fetch-firebase-web-config",
     "fetch-firebase-web-config": "node create.config.files.js $npm_package_config_projectName $npm_package_config_webAppName"

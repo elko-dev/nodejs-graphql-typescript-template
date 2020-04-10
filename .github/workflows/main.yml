@@ -13,18 +13,21 @@ jobs:
           ./batect test
         env:
           AUTH_CONFIG : ${{ secrets.AUTH_CONFIG }}
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6' # Version range or exact version of a Ruby version to use, using semvers version range syntax.
       - name: Deploy Dev
         run: |
-          ./batect deployDev
+          npm run deploy dev
         env:
           HEROKU_API_KEY : ${{ secrets.HEROKU_API_KEY }}
       - name: Deploy Stage
         run: |
-          ./batect deployStage
+           npm run deploy stage
         env:
           HEROKU_API_KEY : ${{ secrets.HEROKU_API_KEY }}
       - name: Deploy Prod
         run: |
-          ./batect deployProd
+           npm run deploy prod
         env:
           HEROKU_API_KEY : ${{ secrets.HEROKU_API_KEY }}
