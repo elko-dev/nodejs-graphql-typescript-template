@@ -1,0 +1,41 @@
+image: elkodev/base-docker-ci-image:1ead4de5015c981ad82c09858da8ff6a1e061214 
+
+services:
+  - docker:dind
+
+stages:
+- buildTest
+- deployDev
+- deployStage
+- deployProd
+
+buildTest:
+  stage: buildTest
+  script:
+    - ./batect --docker-host tcp://docker:2375/ test
+deployDev:
+  only:
+      - master
+  stage: deployDev
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=dev-myapp --api-key=${HEROKU_API_KEY}
+  image: ruby:2.6
+deployStage:
+  only:
+      - master
+  stage: deployStage
+  when: manual
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=stage-myapp --api-key=${HEROKU_API_KEY}
+  image: ruby:2.6
+deployProd:
+  only:
+      - master
+  stage: deployProd
+  when: manual
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=prod-myapp --api-key=${HEROKU_API_KEY}
+  image: ruby:2.6 
