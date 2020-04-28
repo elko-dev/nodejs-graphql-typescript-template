@@ -1,14 +1,13 @@
 containers:
-  deploy-env:
-    image: elkodev/ruby-dpl-image:f179fb18eeb91ac0421c8e9bd7f51715eb9a44c2
+  docker-push-env:
+    build_directory: .batect/docker-push-env
     volumes:
       - local: .
         container: /code
         options: cached
+      - local: /var/run/docker.sock
+        container: /var/run/docker.sock
     working_directory: /code
-    run_as_current_user:
-      enabled: true
-      home_directory: /home/container-user
 
   build-env:
     image: node:13.8.0
@@ -72,30 +71,12 @@ tasks:
         AUTH_CONFIG: ${AUTH_CONFIG}
     dependencies:
       - database
-  deployDev:
-    description: Deploy app to dev
+  deploy:
+    description: Deploy app
     group: Deploy tasks
     run:
-      container: deploy-env
-      command: ./scripts/deploy.sh
+      container: docker-push-env
+      command: ./.batect/buildAndPushHeroku.sh
       environment:
-        APP_NAME: dev-myapp
         HEROKU_API_KEY: ${HEROKU_API_KEY}
-  deployStage:
-    description: Deploy app to stage
-    group: Deploy tasks
-    run:
-      container: deploy-env
-      command: ./scripts/deploy.sh
-      environment:
-        APP_NAME: stage-myapp
-        HEROKU_API_KEY: ${HEROKU_API_KEY}
-  deployProd:
-    description: Deploy app to prod
-    group: Deploy tasks
-    run:
-      container: deploy-env
-      command: ./scripts/deploy.sh
-      environment:
-        APP_NAME: prod-myapp
-        HEROKU_API_KEY: ${HEROKU_API_KEY}
+        APP_NAME: myapp-${ENV}
