@@ -14,8 +14,8 @@ type Mutation {
     phoneNumber: String
   ): UserResponse
   createLocation(
-    latitude: String!
-    longitude: String!
+    latitude: Float!
+    longitude: Float!
     name: String!
     description: String
   ): LocationResponse
@@ -47,8 +47,8 @@ type LocationsResponse {
 
 type Location {
   id: ID!
-  latitude: String!
-  longitude: String!
+  latitude: Float!
+  longitude: Float!
   name: String!
   description: String
 }

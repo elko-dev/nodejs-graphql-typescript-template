@@ -14,8 +14,8 @@ export default class LocationService {
                 name: location.name,
                 description: location.description,
             };
-            return loc
-        })
+            return loc;
+        });
     }
     public async createLocation(args: MutationCreateLocationArgs): Promise<Location> {
         const newLocation: LocationEntity = new LocationEntity();
