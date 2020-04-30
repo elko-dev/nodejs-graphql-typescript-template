@@ -11,3 +11,24 @@ mutation {
     phoneNumber
   }
 }
+
+
+mutation {
+  createLocation(
+    latitude: "10"
+    longitude: "asdf"
+    name: "myname"
+    description: "coolplace"
+  ) {
+    location{
+      id
+      latitude
+      longitude
+      name
+      description
+    }
+    errors{
+      message
+    }
+  }
+}

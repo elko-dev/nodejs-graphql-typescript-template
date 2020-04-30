@@ -13,6 +13,12 @@ type Mutation {
     authId: String!
     phoneNumber: String
   ): UserResponse
+  createLocation(
+    latitude: String!
+    longitude: String!
+    name: String!
+    description: String
+  ): LocationResponse
 }
 
 type UserResponse {
@@ -28,9 +34,29 @@ type User {
   phoneNumber: String
 }
 
+type LocationResponse {
+  location: Location
+  errors: [Error]!
+}
+
+
+type LocationsResponse {
+  locations: [Location]
+  errors: [Error]!
+}
+
+type Location {
+  id: ID!
+  latitude: String!
+  longitude: String!
+  name: String!
+  description: String
+}
+
 type Query {
   getUser(id: String!): UserResponse!
   getUserByFirebaseId(id: String!): UserResponse!
+  getLocations(input:String): LocationsResponse!
 }
 
 type Error {
