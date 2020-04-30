@@ -16,8 +16,8 @@ export type Error = {
 export type Location = {
    __typename?: 'Location';
   id: Scalars['ID'];
-  latitude: Scalars['String'];
-  longitude: Scalars['String'];
+  latitude: Scalars['Float'];
+  longitude: Scalars['Float'];
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
 };
@@ -61,8 +61,8 @@ export type MutationSignUpAuthorizedUserArgs = {
 
 
 export type MutationCreateLocationArgs = {
-  latitude: Scalars['String'];
-  longitude: Scalars['String'];
+  latitude: Scalars['Float'];
+  longitude: Scalars['Float'];
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
 };

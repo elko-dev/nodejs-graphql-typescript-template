@@ -5,13 +5,13 @@ import { Model } from './model';
 @Entity({ name: "Location" })
 export class LocationEntity extends Model {
 
-  @Column({ name: 'latitude', length: 51 })
+  @Column({ name: 'latitude' })
   @IsString()
-  latitude!: string;
+  latitude!: number;
 
-  @Column({ name: 'longitude', length: 51 })
+  @Column({ name: 'longitude' })
   @IsString()
-  longitude!: string;
+  longitude!: number;
 
   @Column()
   @IsString()
