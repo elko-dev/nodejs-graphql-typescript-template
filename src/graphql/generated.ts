@@ -13,10 +13,32 @@ export type Error = {
   message: Scalars['String'];
 };
 
+export type Location = {
+   __typename?: 'Location';
+  id: Scalars['ID'];
+  latitude: Scalars['String'];
+  longitude: Scalars['String'];
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+};
+
+export type LocationResponse = {
+   __typename?: 'LocationResponse';
+  location?: Maybe<Location>;
+  errors: Array<Maybe<Error>>;
+};
+
+export type LocationsResponse = {
+   __typename?: 'LocationsResponse';
+  locations?: Maybe<Array<Maybe<Location>>>;
+  errors: Array<Maybe<Error>>;
+};
+
 export type Mutation = {
    __typename?: 'Mutation';
   signUpUser?: Maybe<UserResponse>;
   signUpAuthorizedUser?: Maybe<UserResponse>;
+  createLocation?: Maybe<LocationResponse>;
 };
 
 
@@ -37,10 +59,19 @@ export type MutationSignUpAuthorizedUserArgs = {
   phoneNumber?: Maybe<Scalars['String']>;
 };
 
+
+export type MutationCreateLocationArgs = {
+  latitude: Scalars['String'];
+  longitude: Scalars['String'];
+  name: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
    __typename?: 'Query';
   getUser: UserResponse;
   getUserByFirebaseId: UserResponse;
+  getLocations: LocationsResponse;
 };
 
 
@@ -51,6 +82,11 @@ export type QueryGetUserArgs = {
 
 export type QueryGetUserByFirebaseIdArgs = {
   id: Scalars['String'];
+};
+
+
+export type QueryGetLocationsArgs = {
+  input?: Maybe<Scalars['String']>;
 };
 
 export type User = {

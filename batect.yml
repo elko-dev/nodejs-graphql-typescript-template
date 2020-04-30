@@ -46,6 +46,14 @@ tasks:
       command: ./scripts/test.sh
       environment:
         CI: "true"
+  database:
+    description: database
+    group: Test tasks
+    run:
+      container: database
+      ports:
+        - local: 5432
+          container: 5432
   testWatch:
     description: Run unit tests for application
     group: Test tasks
