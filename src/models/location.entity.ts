@@ -7,11 +7,11 @@ export class LocationEntity extends Model {
 
   @Column({ name: 'latitude' })
   @IsString()
-  latitude!: number;
+  latitude!: string;
 
   @Column({ name: 'longitude' })
   @IsString()
-  longitude!: number;
+  longitude!: string;
 
   @Column()
   @IsString()
