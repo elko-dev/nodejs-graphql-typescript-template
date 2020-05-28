@@ -4,6 +4,7 @@ node_modules
 .vscode
 *.log
 firebase-auth-config.json
+firebase-admin-sdk.json
 config/spawn-platform.json
 serviceAccountKey.json
 src/config/web-services.json
