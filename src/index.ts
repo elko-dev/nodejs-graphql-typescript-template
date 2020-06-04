@@ -2,6 +2,7 @@ import { GraphQLServer } from 'graphql-yoga';
 import resolvers from './resolvers';
 import { createConnection } from "typeorm";
 import * as firebase from "firebase/app";
+const cors = require('cors');
 
 const DATBASE_URL = process.env.DATABASE_URL;
 const SYNCHRONIZE: boolean = process.env.TYPEORM_SYNCHRONIZE === "true" ? true : false;
@@ -29,4 +30,10 @@ const server = new GraphQLServer({
     ...request,
   }),
 });
+
+server.express.get('/health', function(req, res) {
+  res.send('OK');
+});
+server.use(cors());
+
 server.start(() => console.log(`Server is running on http://localhost:4000`));
