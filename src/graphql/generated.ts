@@ -1,4 +1,5 @@
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -9,12 +10,12 @@ export type Scalars = {
 };
 
 export type Error = {
-   __typename?: 'Error';
+  __typename?: 'Error';
   message: Scalars['String'];
 };
 
 export type Location = {
-   __typename?: 'Location';
+  __typename?: 'Location';
   id: Scalars['ID'];
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
@@ -23,19 +24,19 @@ export type Location = {
 };
 
 export type LocationResponse = {
-   __typename?: 'LocationResponse';
+  __typename?: 'LocationResponse';
   location?: Maybe<Location>;
   errors: Array<Maybe<Error>>;
 };
 
 export type LocationsResponse = {
-   __typename?: 'LocationsResponse';
+  __typename?: 'LocationsResponse';
   locations?: Maybe<Array<Maybe<Location>>>;
   errors: Array<Maybe<Error>>;
 };
 
 export type Mutation = {
-   __typename?: 'Mutation';
+  __typename?: 'Mutation';
   signUpUser?: Maybe<UserResponse>;
   signUpAuthorizedUser?: Maybe<UserResponse>;
   createLocation?: Maybe<LocationResponse>;
@@ -68,7 +69,7 @@ export type MutationCreateLocationArgs = {
 };
 
 export type Query = {
-   __typename?: 'Query';
+  __typename?: 'Query';
   getUser: UserResponse;
   getUserByFirebaseId: UserResponse;
   getLocations: LocationsResponse;
@@ -90,7 +91,7 @@ export type QueryGetLocationsArgs = {
 };
 
 export type User = {
-   __typename?: 'User';
+  __typename?: 'User';
   id: Scalars['ID'];
   email: Scalars['String'];
   firstName: Scalars['String'];
@@ -99,7 +100,7 @@ export type User = {
 };
 
 export type UserResponse = {
-   __typename?: 'UserResponse';
+  __typename?: 'UserResponse';
   user?: Maybe<User>;
   errors: Array<Maybe<Error>>;
 };
