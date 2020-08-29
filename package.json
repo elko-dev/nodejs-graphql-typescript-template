@@ -10,7 +10,7 @@
     "build": "rimraf dist && npm run generate-gql-types && npm run decode-firebase-config && npm run build-ts && npm run tslint",
     "build-production": "npm run build-ts",
     "build-run": "npm run build-ts && node dist/server.js",
-    "clean": "rimraf node_modules build .scannerwork",
+    "clean": "rimraf node_modules dist .scannerwork",
     "serve": "nodemon dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
     "build-ts": "tsc",
