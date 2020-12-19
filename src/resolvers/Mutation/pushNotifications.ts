@@ -1,19 +1,24 @@
+import PushNotificationService from "../../service/pushNotifications.service";
+import {BooleanResponse, MutationPushNotificationArgs} from "../../graphql/generated";
+import NotificationObject from "../../models/notification.object";
 
 export const postPushNotification = {
-  async signUpUser(_, args: MutationSignUpUserArgs): Promise<UserResponse> {
+  async sendPushNotifications(_, args: MutationPushNotificationArgs): Promise<BooleanResponse> {
     try {
-      const userService: UserService = new UserService(new FirebaseAuth());
+      const pushNotificationService: PushNotificationService = new PushNotificationService();
+      const notificationObject:NotificationObject = pushNotificationService.inputArgsToNotificationObject(args);
 
-      const user: User = await userService.signUpUser(args);
+      await pushNotificationService.sendNotification(args.tokens, notificationObject);
+
       return {
-        user: user,
+        response: true,
         errors: []
       };
     }
     catch (error) {
       console.log(error);
       return {
-        user: null,
+        response: false,
         errors: [createError(error)]
       };
     }
@@ -23,6 +28,7 @@ export const postPushNotification = {
 
 function createError(error: any): Error {
   return {
+    name: error.name,
     message: error
   };
 }

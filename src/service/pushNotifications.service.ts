@@ -1,9 +1,10 @@
 import PushNotifications from 'node-pushnotifications';
 import Log from '../Logger/Logger';
 import {NotificationObject} from "../models/notification.object";
+import {MutationPushNotificationArgs} from "../graphql/generated";
 
 export default class PushNotificationService {
-    public readonly settings = {
+    private readonly settings = {
         // android
         gcm: {
             id: process.env.FIREBASE_APP_SERVER_KEY,
@@ -36,9 +37,24 @@ export default class PushNotificationService {
 
     public sendNotification = async (tokens: string[], data: NotificationObject) => {
         const results = await this.push.send(tokens, data);
-        Log.log('Sending push notification ', { data });
-        Log.log({ results });
+        Log.log('Sending push notification ', {data});
+        Log.log({results});
         return results;
     };
 
+    public async inputArgsToNotificationObject(args: MutationPushNotificationArgs): NotificationObject {
+
+        const title = args.title;
+        const message = args.message;
+        const topic = args.topic || '';
+        const sound = args.sound || false;
+        const pushIconUrl = args.pushIconUrl || '';
+        const androidColor = args.androidNotificationColor || '';
+        const androidNotificationChannel = args.androidNotificationChannel || '';
+        const androidImageUrl = args.androidImageUrl || '';
+
+        const notification: NotificationObject = new NotificationObject({title, message, topic, sound, pushIconUrl, androidColor, androidNotificationChannel, androidImageUrl});
+
+        return notification;
+    }
 }
