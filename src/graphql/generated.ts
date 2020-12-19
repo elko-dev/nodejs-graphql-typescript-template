@@ -1,5 +1,7 @@
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -7,11 +9,35 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
+  Date: any;
 };
+
+export type BooleanResponse = {
+  __typename?: 'BooleanResponse';
+  response?: Maybe<Scalars['Boolean']>;
+  errors: Array<Maybe<Error>>;
+};
+
+
+export enum DaysOfWeek {
+  Sunday = 'sunday',
+  Monday = 'monday',
+  Tuesday = 'tuesday',
+  Wednesday = 'wednesday',
+  Thursday = 'thursday',
+  Friday = 'friday',
+  Saturday = 'saturday'
+}
 
 export type Error = {
   __typename?: 'Error';
   message: Scalars['String'];
+};
+
+export type GenericResponse = {
+  __typename?: 'GenericResponse';
+  message?: Maybe<Scalars['String']>;
+  errors: Array<Maybe<Error>>;
 };
 
 export type Location = {
@@ -66,6 +92,24 @@ export type MutationCreateLocationArgs = {
   longitude: Scalars['Float'];
   name: Scalars['String'];
   description?: Maybe<Scalars['String']>;
+};
+
+export type PushNotification = {
+  __typename?: 'PushNotification';
+  title: Scalars['String'];
+  message: Scalars['String'];
+  pushIconUrl?: Maybe<Scalars['String']>;
+  sound?: Maybe<Scalars['String']>;
+  clickAction?: Maybe<Scalars['String']>;
+  androidNotificationChannel?: Maybe<Scalars['String']>;
+  androidNotificationColor?: Maybe<Scalars['String']>;
+  androidImageUrl?: Maybe<Scalars['String']>;
+};
+
+export type PushNotificationResponse = {
+  __typename?: 'PushNotificationResponse';
+  location?: Maybe<Location>;
+  errors: Array<Maybe<Error>>;
 };
 
 export type Query = {
