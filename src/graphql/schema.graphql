@@ -38,6 +38,16 @@ type Location {
   name: String!
   description: String
 }
+type PushNotification {
+  title:String!
+  message:String!
+  pushIconUrl:String
+  sound:String
+  clickAction:String
+  androidNotificationChannel:String
+  androidNotificationColor:String #RGB format
+  androidImageUrl:String
+}
 ### Response Types ###
 type UserResponse {
   user: User
@@ -49,9 +59,13 @@ type LocationResponse {
   errors: [Error]!
 }
 
-
 type LocationsResponse {
   locations: [Location]
+  errors: [Error]!
+}
+
+type PushNotificationResponse {
+  location: Location
   errors: [Error]!
 }
 ### Query ###

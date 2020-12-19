@@ -12,4 +12,6 @@ config/web-spawn-platform.json
 src/config/web-spawn-platform.json
 local.env
 .env
-.scannerwork 
+.scannerwork
+*lock*
+
