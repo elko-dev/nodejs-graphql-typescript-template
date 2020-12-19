@@ -66,6 +66,7 @@ export type Mutation = {
   signUpUser?: Maybe<UserResponse>;
   signUpAuthorizedUser?: Maybe<UserResponse>;
   createLocation?: Maybe<LocationResponse>;
+  pushNotification?: Maybe<BooleanResponse>;
 };
 
 
@@ -94,10 +95,25 @@ export type MutationCreateLocationArgs = {
   description?: Maybe<Scalars['String']>;
 };
 
+
+export type MutationPushNotificationArgs = {
+  tokens: Array<Scalars['String']>;
+  title: Scalars['String'];
+  message: Scalars['String'];
+  topic?: Maybe<Scalars['String']>;
+  pushIconUrl?: Maybe<Scalars['String']>;
+  sound?: Maybe<Scalars['String']>;
+  clickAction?: Maybe<Scalars['String']>;
+  androidNotificationChannel?: Maybe<Scalars['String']>;
+  androidNotificationColor?: Maybe<Scalars['String']>;
+  androidImageUrl?: Maybe<Scalars['String']>;
+};
+
 export type PushNotification = {
   __typename?: 'PushNotification';
   title: Scalars['String'];
   message: Scalars['String'];
+  topic?: Maybe<Scalars['String']>;
   pushIconUrl?: Maybe<Scalars['String']>;
   sound?: Maybe<Scalars['String']>;
   clickAction?: Maybe<Scalars['String']>;
@@ -108,7 +124,7 @@ export type PushNotification = {
 
 export type PushNotificationResponse = {
   __typename?: 'PushNotificationResponse';
-  location?: Maybe<Location>;
+  location?: Maybe<PushNotification>;
   errors: Array<Maybe<Error>>;
 };
 

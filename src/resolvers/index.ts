@@ -1,5 +1,6 @@
 import {post} from './Mutation/user';
 import {location} from './Mutation/location';
+import {postPushNotification} from './Mutation/pushNotifications';
 import {get} from './Query/user';
 import {getLocation} from './Query/location';
 import {dateScalar} from './Scalar/date.scalar';
@@ -13,5 +14,6 @@ export default {
     Mutation: {
         ...post,
         ...location,
+        ...postPushNotification,
     },
 };

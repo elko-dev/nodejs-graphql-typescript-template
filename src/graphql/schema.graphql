@@ -20,6 +20,18 @@ type Mutation {
     name: String!
     description: String
   ): LocationResponse
+  pushNotification(
+    tokens:[String!]!
+    title:String!
+    message:String!
+    topic:String
+    pushIconUrl:String
+    sound:String
+    clickAction:String
+    androidNotificationChannel:String
+    androidNotificationColor:String #RGB format
+    androidImageUrl:String
+  ):BooleanResponse
 }
 
 ### Types ###
@@ -41,12 +53,14 @@ type Location {
 type PushNotification {
   title:String!
   message:String!
+  topic:String
   pushIconUrl:String
   sound:String
   clickAction:String
   androidNotificationChannel:String
   androidNotificationColor:String #RGB format
   androidImageUrl:String
+
 }
 ### Response Types ###
 type UserResponse {
@@ -65,7 +79,7 @@ type LocationsResponse {
 }
 
 type PushNotificationResponse {
-  location: Location
+  location: PushNotification
   errors: [Error]!
 }
 ### Query ###
