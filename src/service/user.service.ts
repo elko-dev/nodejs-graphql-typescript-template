@@ -1,17 +1,20 @@
-import { UserEntity } from "../models/user.entity";
+import {UserEntity} from "../models/user.entity";
 import {
     QueryGetUserArgs, User,
     MutationSignUpUserArgs, MutationSignUpAuthorizedUserArgs
 } from "../graphql/generated";
-import { getRepository, Repository } from "typeorm";
-import { Auth, AuthDetails } from "../auth/auth";
+import {getRepository, Repository} from "typeorm";
+import {Auth, AuthDetails} from "../auth/auth";
+import {isValidEmail} from "../utils/validation.utils";
 
 export default class UserService {
     private repo: Repository<UserEntity> = getRepository(UserEntity);
     private auth: Auth;
+
     constructor(auth: Auth) {
         this.auth = auth;
     }
+
     public async signUpUser(args: MutationSignUpUserArgs): Promise<User> {
         // create user
         const authUser: AuthDetails = await this.auth.registerUser(args.email, args.password);
@@ -20,8 +23,12 @@ export default class UserService {
         user.email = args.email;
         user.firstName = args.firstName;
         user.lastName = args.lastName;
+
         if (args.phoneNumber) {
             user.phoneNumber = args.phoneNumber;
+        }
+        if (!isValidEmail(args.email)) {
+            throw new Error('Invalid email format');
         }
         const newUser: UserEntity = await this.createUser(user);
         return {
@@ -41,6 +48,9 @@ export default class UserService {
         user.lastName = args.lastName;
         if (args.phoneNumber) {
             user.phoneNumber = args.phoneNumber;
+        }
+        if (!isValidEmail(args.email)) {
+            throw new Error('Invalid email format');
         }
         const newUser: UserEntity = await this.createUser(user);
         return {

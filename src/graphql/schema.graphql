@@ -1,3 +1,4 @@
+### Mutation ####
 type Mutation {
   signUpUser(
     email: String!
@@ -21,17 +22,26 @@ type Mutation {
   ): LocationResponse
 }
 
-type UserResponse {
-  user: User
-  errors: [Error]!
-}
-
+### Types ###
 type User {
   id: ID!
   email: String!
   firstName: String!
   lastName: String!
   phoneNumber: String
+}
+
+type Location {
+  id: ID!
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  description: String
+}
+### Response Types ###
+type UserResponse {
+  user: User
+  errors: [Error]!
 }
 
 type LocationResponse {
@@ -44,21 +54,33 @@ type LocationsResponse {
   locations: [Location]
   errors: [Error]!
 }
-
-type Location {
-  id: ID!
-  latitude: Float!
-  longitude: Float!
-  name: String!
-  description: String
-}
-
+### Query ###
 type Query {
   getUser(id: String!): UserResponse!
   getUserByFirebaseId(id: String!): UserResponse!
   getLocations(input:String): LocationsResponse!
 }
-
+#### Generic Responses ####
 type Error {
   message: String!
 }
+type BooleanResponse {
+  response: Boolean
+  errors: [Error]!
+}
+type GenericResponse {
+  message: String
+  errors: [Error]!
+}
+#### Enums ####
+enum DaysOfWeek {
+  sunday
+  monday
+  tuesday
+  wednesday
+  thursday
+  friday
+  saturday
+}
+#### Scalar ####
+scalar Date
