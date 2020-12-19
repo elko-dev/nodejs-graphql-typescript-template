@@ -1,0 +1,4 @@
+2020/12/18 20:18:52 [info] Starting the DNS proxy
+2020/12/18 20:18:52 [info] Starting the DNS proxy server
+2020/12/18 20:18:52 [info] Creating the UDP server socket
+2020/12/18 20:18:52 [fatal] cannot start the DNS proxy due to couldn't listen to UDP socket, cause: listen udp 127.0.0.1:5053: bind: address already in use
