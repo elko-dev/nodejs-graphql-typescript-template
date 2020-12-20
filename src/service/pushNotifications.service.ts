@@ -1,6 +1,6 @@
 import PushNotifications from 'node-pushnotifications';
 import Log from '../Logger/Logger';
-import {NotificationObject} from "../models/notification.object";
+import NotificationObject from "../models/notification.object";
 import {MutationPushNotificationArgs} from "../graphql/generated";
 
 export default class PushNotificationService {
