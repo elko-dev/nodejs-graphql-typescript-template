@@ -23,12 +23,12 @@ export default class NotificationObject {
 
     public data = {
         title: this.title, // REQUIRED for Android
+        body: this.message,
         topic: this.topic || '', // REQUIRED for iOS (apn and gcm)
         /* The topic of the notification. When using token-based authentication, specify the bundle ID of the app.
          * When using certificate-based authentication, the topic is usually your app's bundle ID.
          * More details can be found under https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns
          */
-        body: this.message,
         priority: 'high', // gcm, apn. Supported values are 'high' or 'normal' (gcm). Will be translated to 10 and 5 for apn. Defaults to 'high'
         collapseKey: '', // gcm for android, used as collapseId in apn
         contentAvailable: true, // gcm, apn. node-apn will translate true to 1 as required by apn.
