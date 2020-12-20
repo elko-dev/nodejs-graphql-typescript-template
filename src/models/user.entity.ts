@@ -1,8 +1,9 @@
 import {IsEmail, IsPhoneNumber, IsString, IsUrl} from 'class-validator';
 import {Column, Entity} from 'typeorm';
 import {Model} from './model';
+import {isEmpty} from "../utils/validation.utils";
 
-@Entity({name: "User"})
+@Entity({name: "User_Entity"})
 export class UserEntity extends Model {
 
     @Column({type: 'varchar', name: 'first_name', length: 51})
@@ -31,7 +32,7 @@ export class UserEntity extends Model {
 
 
     public userIsRegistered = (): boolean => {
-        return this.authId !== undefined && this.authId !== null && this.authId !== '';
+        return isEmpty(this.authId);
     };
 
     public getFullName = (): string => {
