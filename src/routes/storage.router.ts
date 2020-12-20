@@ -1,6 +1,8 @@
 import Express from 'express';
 import multer from 'multer';
 import { uploadUserProfilePhoto } from '../storage/uploader';
+import UserService from "../service/user.service";
+import FirebaseAuth from "../auth/firebase.auth";
 
 const router = Express.Router();
 const uploadMiddleware = multer().single('file');
@@ -14,9 +16,11 @@ router.use(uploadMiddleware);
 router.post('/uploadUserProfilePhoto/:env/:userId', (req: Express.Request, res: Express.Response, next: Express.NextFunction) => {
     // @ts-ignore
     if (req.file) {
+        const userService:UserService = new UserService(new FirebaseAuth());
         // @ts-ignore
         uploadUserProfilePhoto(req.file, req.params.env, req.params.userId)
-            .then((response) => {
+            .then(async (response) => {
+                await userService.updateUserProfilePhoto(req.params.userId, response.publicUrl);
                 res.send(response);
             })
             .catch(err => {

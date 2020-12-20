@@ -63,11 +63,10 @@ export default class UserService {
     }
 
     public async createUser(user: UserEntity): Promise<UserEntity> {
-        return this.repo.save(user);
+        return await this.repo.save(user);
     }
-
     public async getUser(args: QueryGetUserArgs): Promise<User> {
-        const user: UserEntity | undefined = await this.repo.findOne(args.id);
+        const user: UserEntity = await this.queryUser(args);
 
         if (user) {
             const userResponse: User = {
@@ -81,7 +80,14 @@ export default class UserService {
         }
         return Promise.reject("Not Found");
     }
+    public async queryUser(args: QueryGetUserArgs):Promise<UserEntity> {
+        const user: UserEntity | undefined = await this.repo.findOne(+args.id);
 
+        if (user) {
+            return user;
+        }
+        return Promise.reject("Not Found");
+    }
     public async getUserByFirebaseId(args: QueryGetUserArgs): Promise<User> {
         const user: UserEntity | undefined = await this.repo.findOne({
             where: {
@@ -100,5 +106,13 @@ export default class UserService {
             return userResponse;
         }
         return Promise.reject("Not Found");
+    }
+    public async updateUserProfilePhoto(id:string, userProfilePhotoUrl:string) {
+        const user:UserEntity = await this.queryUser({id});
+        if (user) {
+            user.profilePhotoUrl = userProfilePhotoUrl;
+
+            await this.createUser(user);
+        }
     }
 }
