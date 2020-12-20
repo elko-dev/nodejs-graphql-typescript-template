@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 import { Column, Entity } from 'typeorm';
 import { Model } from './model';
 
-@Entity({ name: "Location" })
+@Entity({ name: "Location_Entity" })
 export class LocationEntity extends Model {
 
   @Column({ type: 'varchar', name: 'latitude' })
