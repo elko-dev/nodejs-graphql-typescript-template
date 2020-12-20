@@ -46,4 +46,7 @@ customRouter.use('/upload', UserPhotoUploadRouter);
 
 server.express.use(customRouter);
 
-server.start(() => console.log(`Server is running on http://localhost:4000`));
+server.start(() => console.log(`Server is running on http://localhost:4000`)).catch((err) => {
+    console.log('error starting the server ', err);
+    process.exit(1);
+});

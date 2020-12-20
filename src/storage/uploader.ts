@@ -7,7 +7,7 @@ import firebaseCredConfigJson from "../../config/firebase-service-account.json";
 const storageBucket = `gs://${firebaseCredConfigJson.project_id}`;
 
 FirebaseAdmin.initializeApp({
-    credential: FirebaseAdmin.credential.cert(firebaseCredConfigJson),
+    credential: FirebaseAdmin.credential.cert(require("../../config/firebase-service-account.json")),
     storageBucket: storageBucket
 });
 
