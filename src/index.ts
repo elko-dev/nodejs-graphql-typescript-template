@@ -1,8 +1,11 @@
 import {GraphQLServer} from 'graphql-yoga';
 import resolvers from './resolvers';
+import { UserPhotoUploadRouter } from './routes/storage.router';
+import Express from 'express';
 import {createConnection} from "typeorm";
 import * as firebase from "firebase/app";
 
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -36,5 +39,11 @@ server.express.get('/health', function (req, res) {
     res.send('OK');
 });
 server.use(cors());
+
+server.express.use(bodyParser.json());
+const customRouter = Express.Router();
+customRouter.use('/upload', UserPhotoUploadRouter);
+
+server.express.use(customRouter);
 
 server.start(() => console.log(`Server is running on http://localhost:4000`));
