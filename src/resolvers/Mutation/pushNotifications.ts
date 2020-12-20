@@ -6,7 +6,7 @@ export const postPushNotification = {
   async sendPushNotifications(_, args: MutationPushNotificationArgs): Promise<BooleanResponse> {
     try {
       const pushNotificationService: PushNotificationService = new PushNotificationService();
-      const notificationObject:NotificationObject = pushNotificationService.inputArgsToNotificationObject(args);
+      const notificationObject:NotificationObject = await PushNotificationService.inputArgsToNotificationObject(args);
 
       await pushNotificationService.sendNotification(args.tokens, notificationObject);
 
