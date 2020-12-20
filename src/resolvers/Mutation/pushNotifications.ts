@@ -23,7 +23,6 @@ export const postPushNotification = {
       };
     }
   },
-
 };
 
 function createError(error: any): Error {

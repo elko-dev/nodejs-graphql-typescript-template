@@ -1,5 +1,6 @@
 import { IStorage, FileDTO } from './storage';
 import { Bucket } from '@google-cloud/storage';
+import Express from 'express';
 
 export class GCFileStorage implements IStorage {
 
@@ -9,6 +10,7 @@ export class GCFileStorage implements IStorage {
         this.bucket = bucket;
     }
 
+    // @ts-ignore
     public async storeFile(file: Express.Multer.File, path: string): Promise<FileDTO> {
         // IT IS WORTH NOTING - the below logic needs to be wrapped in a Promise
         // to work around the lack of promise support for the blobStream.on methods
