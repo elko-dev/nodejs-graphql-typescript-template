@@ -56,7 +56,8 @@
     "@google-cloud/storage": "latest",
     "node-pushnotifications": "latest",
     "firebase-admin": "latest",
-    "multer": "latest"
+    "multer": "latest",
+    "moment": "latest"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.8.3",

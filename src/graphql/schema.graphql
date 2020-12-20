@@ -41,6 +41,7 @@ type User {
     firstName: String!
     lastName: String!
     phoneNumber: String
+
 }
 
 type Location {
@@ -60,7 +61,6 @@ type PushNotification {
     androidNotificationChannel:String
     androidNotificationColor:String #RGB format
     androidImageUrl:String
-
 }
 ### Response Types ###
 type UserResponse {
