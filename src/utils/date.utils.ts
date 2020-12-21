@@ -62,9 +62,7 @@ export enum TimeFormat {
 }
 
 //Human To Unix time
-export const humanToUnixTime = (date: DateType = new Date()): number => {
-  return moment(date).unix();
-};
+export const humanToUnixTime = (date: DateType = new Date()): number => moment(date).unix();
 export const stringToDate = (
   strDate: string,
   format: DateTimeType,
@@ -74,12 +72,9 @@ export const stringToDate = (
   return toDateOrMoment ? date.toDate() : date;
 };
 //Date to date format for region
-export const dateToLocale = (date: DateType = new Date()): string => {
-  return moment(date).format('L');
-};
-export const dateTimeToLocale = (date: DateType = new Date()): string => {
-  return moment(date).format('LLLL');
-};
+export const dateToLocale = (date: DateType = new Date()): string => moment(date).format('L');
+
+export const dateTimeToLocale = (date: DateType = new Date()): string => moment(date).format('LLLL');
 //Unix time to human time and date
 export const unixTimeToHumanDateTime = (
   unixTime: number,
@@ -176,32 +171,28 @@ export const convertFullDayToShortDay = (fullDay: WeekDaysFullType): string => {
 };
 
 export const weekDaySorting = {
-  sunday: 0, // << if sunday is first day of week
-  monday: 1,
-  tuesday: 2,
-  wednesday: 3,
-  thursday: 4,
-  friday: 5,
-  saturday: 6,
+  "sunday": 0, // << if sunday is first day of week
+  "monday": 1,
+  "tuesday": 2,
+  "wednesday": 3,
+  "thursday": 4,
+  "friday": 5,
+  "saturday": 6,
   // "sunday": 7
 };
 export const monthSorting = {
-  january: 0,
-  february: 1,
-  march: 2,
-  april: 3,
-  may: 4,
-  june: 5,
-  july: 6,
-  august: 7,
-  september: 8,
-  october: 9,
-  november: 10,
-  december: 11,
+  "january": 0,
+  "february": 1,
+  "march": 2,
+  "april": 3,
+  "may": 4,
+  "june": 5,
+  "july": 6,
+  "august": 7,
+  "september": 8,
+  "october": 9,
+  "november": 10,
+  "december": 11,
 };
-export const simpleWeekDaySort = (a: WeekDaysFullType | string, b: WeekDaysFullType | string):number => {
-  return weekDaySorting[a] - weekDaySorting[b];
-};
-export const simpleMonthSort = (a: MonthsFullType | string, b: MonthsFullType | string):number => {
-  return monthSorting[a] - monthSorting[b];
-};
+export const simpleWeekDaySort = (a: WeekDaysFullType, b: WeekDaysFullType):number => weekDaySorting[a] - weekDaySorting[b];
+export const simpleMonthSort = (a: MonthsFullType, b: MonthsFullType ):number => monthSorting[a] - monthSorting[b];

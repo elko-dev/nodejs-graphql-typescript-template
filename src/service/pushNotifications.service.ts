@@ -36,7 +36,7 @@ export default class PushNotificationService {
 
 
     public sendNotification = async (tokens: string[], data: NotificationObject) => {
-        const results = await this.push.send(tokens, data);
+        const results = await this.push.send(tokens, data.data);
         Log.log('Sending push notification ', {data});
         Log.log({results});
         return results;

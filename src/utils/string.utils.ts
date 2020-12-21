@@ -39,6 +39,5 @@ export const isBoolean = (str: Str): boolean => stringToBoolean(str);
 
 export const isBool = (str: Str): boolean => stringToBoolean(str);
 //Replaces non number digits plus neg and decimal points
-export const replaceNonNumber = (str: string): number => {
-  return +str.replace(/[^\d.-]/g, '');
-};
+
+export const replaceNonNumber = (str: string): number => +str.replace(/[^\d.-]/g, '');
