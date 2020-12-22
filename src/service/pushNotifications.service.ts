@@ -42,7 +42,7 @@ export default class PushNotificationService {
         return results;
     };
 
-    public static async inputArgsToNotificationObject(args: MutationSendPushNotificationsArgs): Promise<NotificationObject> {
+    public static  inputArgsToNotificationObject(args: MutationSendPushNotificationsArgs): NotificationObject {
         const title = args.title;
         const message = args.message;
         const topic = args.topic || '';
