@@ -146,6 +146,7 @@ src/config/*.json
 config/*.json
 
 !/config/*.ts
+src/graphql/generated.ts
 local.env
 .env.prod
 .ev.stage
@@ -155,5 +156,3 @@ local.env
 #General
 *.out
 *.log
-
-src/graphql/generated.ts

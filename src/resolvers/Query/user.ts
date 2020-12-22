@@ -1,13 +1,14 @@
 import { UserResponse, QueryGetUserArgs, QueryGetUserByFirebaseIdArgs, User, Error } from "../../graphql/generated";
 import UserService from "../../service/user.service";
 import FirebaseAuth from "../../auth/firebase.auth";
+import {resolveUser} from "../ModelResolvers";
 
 export const get = {
     async getUser(_, args: QueryGetUserArgs): Promise<UserResponse> {
         try {
             const userService: UserService = new UserService(new FirebaseAuth());
 
-            const user: User | undefined = await userService.getUser(args);
+            const user: User | undefined = resolveUser(await userService.getUser(args));
             return {
                 errors: [],
                 user: user
@@ -16,9 +17,9 @@ export const get = {
         }
         catch (error) {
             console.log(error);
-            const resposeError: Error = createError(error);
+            const responseError: Error = createError(error);
             return {
-                errors: [resposeError],
+                errors: [responseError],
                 user: null
             };
         }
@@ -28,7 +29,7 @@ export const get = {
         try {
             const userService: UserService = new UserService(new FirebaseAuth());
 
-            const user: User | undefined = await userService.getUserByFirebaseId(args);
+            const user: User | undefined = resolveUser(await userService.getUserByFirebaseId(args));
             return {
                 errors: [],
                 user: user
@@ -37,9 +38,9 @@ export const get = {
         }
         catch (error) {
             console.log(error);
-            const resposeError: Error = createError(error);
+            const responseError: Error = createError(error);
             return {
-                errors: [resposeError],
+                errors: [responseError],
                 user: null
             };
         }
