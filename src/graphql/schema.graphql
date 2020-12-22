@@ -20,7 +20,7 @@ type Mutation {
         name: String!
         description: String
     ): LocationResponse
-    pushNotification(
+    sendPushNotifications(
         tokens:[String!]!
         title:String!
         message:String!
@@ -79,7 +79,7 @@ type LocationsResponse {
 }
 
 type PushNotificationResponse {
-    location: PushNotification
+    pushNotification: PushNotification
     errors: [Error]!
 }
 ### Query ###

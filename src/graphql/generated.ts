@@ -79,7 +79,7 @@ export type Mutation = {
   signUpUser?: Maybe<UserResponse>;
   signUpAuthorizedUser?: Maybe<UserResponse>;
   createLocation?: Maybe<LocationResponse>;
-  pushNotification?: Maybe<BooleanResponse>;
+  sendPushNotifications?: Maybe<BooleanResponse>;
 };
 
 
@@ -109,7 +109,7 @@ export type MutationCreateLocationArgs = {
 };
 
 
-export type MutationPushNotificationArgs = {
+export type MutationSendPushNotificationsArgs = {
   tokens: Array<Scalars['String']>;
   title: Scalars['String'];
   message: Scalars['String'];

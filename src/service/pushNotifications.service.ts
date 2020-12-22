@@ -1,7 +1,7 @@
 import PushNotifications from 'node-pushnotifications';
-import Log from '../Logger/Logger';
+import Log from '../logger/Logger';
 import NotificationObject from "../models/notification.object";
-import {MutationPushNotificationArgs} from "../graphql/generated";
+import {MutationSendPushNotificationsArgs} from "../graphql/generated";
 
 export default class PushNotificationService {
     private readonly settings = {
@@ -42,8 +42,7 @@ export default class PushNotificationService {
         return results;
     };
 
-    public static async inputArgsToNotificationObject(args: MutationPushNotificationArgs): Promise<NotificationObject> {
-
+    public static async inputArgsToNotificationObject(args: MutationSendPushNotificationsArgs): Promise<NotificationObject> {
         const title = args.title;
         const message = args.message;
         const topic = args.topic || '';
