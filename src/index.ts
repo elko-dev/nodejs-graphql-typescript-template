@@ -4,6 +4,7 @@ import { UserPhotoUploadRouter } from './routes/storage.router';
 import Express from 'express';
 import {createConnection} from "typeorm";
 import * as firebase from "firebase/app";
+import {firebaseServiceAccount} from "../config/config";
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -11,9 +12,9 @@ const cors = require('cors');
 const DATABASE_URL = process.env.DATABASE_URL;
 const SYNCHRONIZE: boolean = process.env.TYPEORM_SYNCHRONIZE === "true";
 const LOGGING: boolean = process.env.TYPEORM_LOGGING === "true";
-const serviceAccount = require("./config/web-spawn-platform.json");
 
-firebase.initializeApp(serviceAccount);
+
+firebase.initializeApp(firebaseServiceAccount);
 
 createConnection({
     type: 'postgres',

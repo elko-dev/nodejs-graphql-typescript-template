@@ -1,9 +1,9 @@
 import PushNotificationService from "../../service/pushNotifications.service";
-import {BooleanResponse, MutationPushNotificationArgs} from "../../graphql/generated";
+import {BooleanResponse, MutationSendPushNotificationsArgs} from "../../graphql/generated";
 import NotificationObject from "../../models/notification.object";
 
 export const postPushNotification = {
-  async sendPushNotifications(_, args: MutationPushNotificationArgs): Promise<BooleanResponse> {
+  async sendPushNotifications(_, args: MutationSendPushNotificationsArgs): Promise<BooleanResponse> {
     try {
       const pushNotificationService: PushNotificationService = new PushNotificationService();
       const notificationObject:NotificationObject = await PushNotificationService.inputArgsToNotificationObject(args);
