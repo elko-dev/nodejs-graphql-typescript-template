@@ -9,7 +9,16 @@ export default class NotificationObject {
     public readonly androidNotificationChannel: string = '';
 
     public constructor(params: Partial<NotificationObject> = {}) {
-        const {title, message, topic = '', pushIconUrl = '', sound = false, androidColor = '', androidImageUrl = '', androidNotificationChannel = ''} = params;
+        const {
+            title,
+            message,
+            topic = '',
+            pushIconUrl = '',
+            sound = '',
+            androidColor = '',
+            androidImageUrl = '',
+            androidNotificationChannel = ''
+        } = params;
         this.title = title!;
         this.message = message!;
         this.topic = topic;
