@@ -26,7 +26,7 @@ export class UserEntity extends Model {
     @IsString()
     authId!: string;
 
-    @Column({type: 'varchar', name: 'photo_url', nullable: false , default: ''})
+    @Column({type: 'varchar', name: 'profile_photo_url', nullable: true , default: ''})
     @IsUrl()
     profilePhotoUrl!: string;
 
