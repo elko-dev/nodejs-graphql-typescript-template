@@ -41,7 +41,9 @@ type User {
     firstName: String!
     lastName: String!
     phoneNumber: String
-
+    profilePhotoUrl:String
+    getFullName:String
+    userIsRegistered:Boolean
 }
 
 type Location {

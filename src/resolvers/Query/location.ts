@@ -15,9 +15,9 @@ export const getLocation = {
         }
         catch (error) {
             console.log(error);
-            const resposeError: Error = createError(error);
+            const responseError: Error = createError(error);
             return {
-                errors: [resposeError],
+                errors: [responseError],
                 locations: null
             };
         }
