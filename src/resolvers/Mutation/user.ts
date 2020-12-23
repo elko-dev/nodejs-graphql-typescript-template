@@ -4,12 +4,13 @@ import {
 } from '../../graphql/generated';
 import UserService from '../../service/user.service';
 import FirebaseAuth from '../../auth/firebase.auth';
+import {resolveUser} from "../ModelResolvers";
 export const post = {
   async signUpUser(_, args: MutationSignUpUserArgs): Promise<UserResponse> {
     try {
       const userService: UserService = new UserService(new FirebaseAuth());
 
-      const user: User = await userService.signUpUser(args);
+      const user: User = resolveUser(await userService.signUpUser(args));
       return {
         user: user,
         errors: []
@@ -28,7 +29,7 @@ export const post = {
     try {
       const userService: UserService = new UserService(new FirebaseAuth());
 
-      const user: User = await userService.signUpAuthUser(args);
+      const user: User = resolveUser(await userService.signUpAuthUser(args));
       return {
         user: user,
         errors: []

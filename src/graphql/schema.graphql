@@ -1,64 +1,130 @@
+### Mutation ####
 type Mutation {
-  signUpUser(
+    signUpUser(
+        email: String!
+        firstName: String!
+        lastName: String!
+        phoneNumber: String
+        password: String!
+    ): UserResponse
+    signUpAuthorizedUser(
+        email: String!
+        firstName: String!
+        lastName: String!
+        authId: String!
+        phoneNumber: String
+    ): UserResponse
+    createLocation(
+        latitude: Float!
+        longitude: Float!
+        name: String!
+        description: String
+    ): LocationResponse
+    sendPushNotifications(
+        tokens:[String!]!
+        title:String!
+        message:String!
+        topic:String
+        pushIconUrl:String
+        sound:String
+        clickAction:String
+        androidNotificationChannel:String
+        androidNotificationColor:String #RGB format
+        androidImageUrl:String
+    ):BooleanResponse
+}
+
+### Types ###
+type User {
+    id: ID!
     email: String!
     firstName: String!
     lastName: String!
     phoneNumber: String
-    password: String!
-  ): UserResponse
-  signUpAuthorizedUser(
-    email: String!
-    firstName: String!
-    lastName: String!
-    authId: String!
-    phoneNumber: String
-  ): UserResponse
-  createLocation(
+    profilePhotoUrl:String
+    getFullName:String
+    userIsRegistered:Boolean
+}
+
+type Location {
+    id: ID!
     latitude: Float!
     longitude: Float!
     name: String!
     description: String
-  ): LocationResponse
 }
-
+type PushNotification {
+    title:String!
+    message:String!
+    topic:String
+    pushIconUrl:String
+    sound:String
+    clickAction:String
+    androidNotificationChannel:String
+    androidNotificationColor:String #RGB format
+    androidImageUrl:String
+}
+### Response Types ###
 type UserResponse {
-  user: User
-  errors: [Error]!
-}
-
-type User {
-  id: ID!
-  email: String!
-  firstName: String!
-  lastName: String!
-  phoneNumber: String
+    user: User
+    errors: [Error]!
 }
 
 type LocationResponse {
-  location: Location
-  errors: [Error]!
+    location: Location
+    errors: [Error]!
 }
-
 
 type LocationsResponse {
-  locations: [Location]
-  errors: [Error]!
+    locations: [Location]
+    errors: [Error]!
 }
 
-type Location {
-  id: ID!
-  latitude: Float!
-  longitude: Float!
-  name: String!
-  description: String
+type PushNotificationResponse {
+    pushNotification: PushNotification
+    errors: [Error]!
 }
-
+### Query ###
 type Query {
-  getUser(id: String!): UserResponse!
-  getUserByFirebaseId(id: String!): UserResponse!
-  getLocations(input:String): LocationsResponse!
+    getUser(id: String!): UserResponse!
+    getUserByFirebaseId(id: String!): UserResponse!
+    getLocations(input:String): LocationsResponse!
 }
-
+#### Generic Responses ####
 type Error {
-  message: String!
+    message: String!
 }
+type BooleanResponse {
+    response: Boolean
+    errors: [Error]!
+}
+type GenericResponse {
+    message: String
+    errors: [Error]!
+}
+#### Enums ####
+enum DaysOfWeek {
+    sunday
+    monday
+    tuesday
+    wednesday
+    thursday
+    friday
+    saturday
+}
+enum Months {
+    january
+    february
+    march
+    april
+    may
+    june
+    july
+    august
+    september
+    october
+    november
+    december
+}
+#### Scalar ####
+scalar Date
