@@ -1,11 +1,8 @@
-import {error, log} from "util";
-
 type LogType =
     | string
     | any
     | object
     | number
-    | bigint
     | boolean
     | symbol
     | unknown
