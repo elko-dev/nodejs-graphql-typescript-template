@@ -1,3 +1,5 @@
+import {error, log} from "util";
+
 type LogType =
     | string
     | any
@@ -31,15 +33,11 @@ export default class Log {
         }).catch((e) => console.error(e));
     };
     //error log
-    public static err = async (...msg: LogType[] | Error[]): Promise<void> => {
-        Log.backgroundTask(async () => {
-            const message = Log.logMessage(LogLevel.ERROR, msg);
-            console.error(message);
-            return Promise.resolve();
-        }).catch((e) => console.error(e));
+    public static err = async (...msg: LogType[]): Promise<void> => {
+            console.error(Log.logMessage(LogLevel.ERROR, msg));
     };
     //Alias
-    public static error = async (...msg: LogType[] | Error[]): Promise<void> =>
+    public static error = async (...msg: LogType[]): Promise<void> =>
         Log.err(msg);
     //log log
     public static log = async (...msg: LogType[]): Promise<void> => {
