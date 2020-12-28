@@ -1,12 +1,12 @@
 export default class NotificationObject {
-    public readonly title: string = '';
-    public readonly message: string = '';
-    public readonly topic: string = '';
-    public readonly pushIconUrl: string = '';
-    public readonly sound: string | false = false;
-    public readonly androidImageUrl: string = '';
-    public readonly androidColor: string = '';
-    public readonly androidNotificationChannel: string = '';
+    public readonly title: string;
+    public readonly message: string;
+    public readonly topic: string;
+    public readonly pushIconUrl: string;
+    public readonly sound: string | false;
+    public readonly androidImageUrl: string;
+    public readonly androidColor: string;
+    public readonly androidNotificationChannel: string;
 
     public constructor(params: Partial<NotificationObject> = {}) {
         const {
@@ -14,7 +14,7 @@ export default class NotificationObject {
             message,
             topic = '',
             pushIconUrl = '',
-            sound = '',
+            sound = false,
             androidColor = '',
             androidImageUrl = '',
             androidNotificationChannel = ''
