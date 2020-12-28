@@ -60,7 +60,7 @@ export default class Log {
         return `${logLevel.toString()}: ${stamp}: ${JSON.stringify(...msg)}`;
     };
     private static backgroundTask = async (data) => {
-        return new Promise(async resolve => {
+        return new Promise( resolve => {
             (typeof data === "function") ? data() : data;
             resolve(true);
         }).catch((e) => console.error(e));
