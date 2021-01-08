@@ -5,10 +5,13 @@ set -eo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$SCRIPT_DIR/.."
 CONFIG_DIR="$SCRIPT_DIR/../config"
-DOT_ENV_FILE="$PROJECT_DIR/.env"
+DOT_ENV_FILE="${PROJECT_DIR}/.env"
 
 if [[ -f ${DOT_ENV_FILE} ]]; then
+    echo "ENV file exist sourcing"
     source ${DOT_ENV_FILE}
+else
+    echo "ENV NOT FOUND"
 fi
 
 if [[ -z "${AUTH_CONFIG}" ]]; then

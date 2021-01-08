@@ -5,7 +5,7 @@ set -euo pipefail
 APP_NAME=$1
 ENV=$2
 
-if [ "$ENV" != "dev" ] && [ "$ENV" != "stage" ] && [ "$ENV" != "prod" ]
+if [[ "$ENV" != "dev" ]] && [[ "$ENV" != "stage" ]] && [[ "$ENV" != "prod" ]]
 then
     echo "$ENV is not a valid environment, must be either dev, stage, or prod"
     exit 1

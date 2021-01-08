@@ -145,7 +145,7 @@ web-spawn-platform.json
 src/config/*.json
 config/*.json
 
-!/config/*.ts
+!*config/*.ts
 src/graphql/generated.ts
 local.env
 .env.prod

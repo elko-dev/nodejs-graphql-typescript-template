@@ -4,7 +4,7 @@ import { UserPhotoUploadRouter } from './routes/storage.router';
 import Express from 'express';
 import {createConnection} from "typeorm";
 import * as firebase from "firebase/app";
-import {firebaseServiceAccount} from "../config/config";
+import {firebaseServiceAccount} from "./config/config";
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
