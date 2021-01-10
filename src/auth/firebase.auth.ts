@@ -14,7 +14,7 @@ export default class FirebaseAuth implements Auth {
         const user: firebase.User | null = firebaseUser.user;
         if (!user) {
             console.error('User id not generated');
-            Promise.reject();
+            return Promise.reject();
         }
         return {
             id: user!.uid

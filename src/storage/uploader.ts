@@ -2,7 +2,7 @@ import * as FirebaseAdmin from 'firebase-admin';
 import {Bucket} from '@google-cloud/storage';
 import {GCFileStorage} from './GCFileStorage';
 import {FileDTO} from './storage';
-import {elkoFirebaseConfig, firebaseServiceAccount} from "../../config/config";
+import {elkoFirebaseConfig, firebaseServiceAccount} from "../config/config";
 
 const firebaseConfig = firebaseServiceAccount, elkoConfig = elkoFirebaseConfig;
 const storageBucket = elkoConfig.storageBucket || `gs://${firebaseConfig.project_id}`;

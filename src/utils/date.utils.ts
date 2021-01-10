@@ -88,12 +88,12 @@ export const unixTimeToHumanDateTime = (
   }
 };
 //Both ways to convert
-export const convertMilitaryCivilianTime = (input: string): string => {
+export const convertMilitaryCivilianTime = (input: string = ''): string => {
   const is24HourRegex = /([01]?[0-9]|2[0-3]):[0-5][0-9]/;
   try {
     if (
       !!input.toLowerCase().match(/am|pm/i) ||
-      input.toLowerCase().match(/[ap]/i)
+      !!input.toLowerCase().match(/[ap]/i)
     ) {
       return moment(input, TimeFormat.civilian).format(TimeFormat.military);
     } else {

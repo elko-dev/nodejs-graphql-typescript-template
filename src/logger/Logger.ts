@@ -62,10 +62,10 @@ export default class Log {
         ...msg: LogType[]
     ): Promise<string | void> => {
         const stamp: string = new Date().toDateString();
-        return JSON.stringify(`${logLevel.toString()}: ${stamp}: `, ...msg);
+        return `${logLevel.toString()}: ${stamp}: ${JSON.stringify(msg)}`;
     };
-    private static backgroundTask = async (data) => {
-        return new Promise(async resolve => {
+    private static backgroundTask = async (data:any) => {
+        return new Promise( resolve => {
             (typeof data === "function") ? data() : data;
             resolve(true);
         }).catch((e) => console.error(e));
