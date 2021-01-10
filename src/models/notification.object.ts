@@ -1,4 +1,5 @@
 export default class NotificationObject {
+
     public readonly title: string;
     public readonly message: string;
     public readonly topic: string;
