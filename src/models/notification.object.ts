@@ -1,3 +1,5 @@
+import PushNotifications from 'node-pushnotifications';
+
 export default class NotificationObject {
 
     public readonly title: string;
@@ -31,7 +33,7 @@ export default class NotificationObject {
 
     }
 
-    public data = {
+    public data:PushNotifications.Data = {
         title: this.title, // REQUIRED for Android
         body: this.message,
         topic: this.topic || '', // REQUIRED for iOS (apn and gcm)
@@ -46,28 +48,21 @@ export default class NotificationObject {
         restrictedPackageName: '', // gcm for android
         dryRun: false, // gcm for android
         icon: this.pushIconUrl || '', // gcm for android
-        image: this.androidImageUrl || '', // gcm for android
-        style: '', // gcm for android
-        picture: '', // gcm for android
         tag: '', // gcm for android
         color: this.androidColor || '', // gcm for android
         clickAction: '', // gcm for android. In ios, category will be used if not supplied
         locKey: '', // gcm, apn
-        locArgs: '', // gcm, apn
         titleLocKey: '', // gcm, apn
         titleLocArgs: '', // gcm, apn
         retries: 1, // gcm, apn
         encoding: '', // apn
         badge: 1, // gcm for ios, apn
-        sound: !!this.sound || 'ping.aiff', // gcm, apn
-        android_channel_id: this.androidNotificationChannel || '', // gcm - Android Channel ID
-        notificationCount: 0, // fcm for android. badge can be used for both fcm and apn
+        sound: (this.sound || 'ping.aiff'), // gcm, apn
         alert: { // apn, will take precedence over title and body
             title: this.title,
             body: this.message,
             // details: https://github.com/node-apn/node-apn/blob/master/doc/notification.markdown#convenience-setters
         },
-        silent: !!this.sound, // apn, will override badge, sound, alert and priority if set to true
         /*
          * A string is also accepted as a payload for alert
          * Your notification won't appear on ios if alert is empty object
@@ -82,8 +77,6 @@ export default class NotificationObject {
         urlArgs: '', // apn and gcm for ios
         truncateAtWordEnd: true, // apn and gcm for ios
         mutableContent: 0, // apn
-        threadId: '', // apn
-        pushType: undefined, // apn. valid values are 'alert' and 'background' (https://github.com/parse-community/node-apn/blob/master/doc/notification.markdown#notificationpushtype)
         expiry: Math.floor(Date.now() / 1000) + 28 * 86400, // unit is seconds. if both expiry and timeToLive are given, expiry will take precedence
         timeToLive: 28 * 86400,
         headers: [], // wns

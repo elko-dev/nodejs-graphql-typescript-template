@@ -32,17 +32,17 @@ export default class PushNotificationService {
         },
         isAlwaysUseFCM: false, // true all messages will be sent through node-gcm (which actually uses FCM)
     };
-    private readonly push = new PushNotifications(this.settings);
+    private readonly push = new PushNotifications(this.settings as PushNotifications.Settings);
 
 
     public sendNotification = async (tokens: string[], data: NotificationObject) => {
-        const results = await this.push.send(tokens, data.data);
+        const results = await this.push.send(tokens, data.data as PushNotifications.Data);
         Log.log('Sending push notification ', {data});
         Log.log({results});
         return results;
     };
 
-    public static  inputArgsToNotificationObject(args: MutationSendPushNotificationsArgs): NotificationObject {
+    public static inputArgsToNotificationObject(args: MutationSendPushNotificationsArgs): NotificationObject {
         const title = args.title;
         const message = args.message;
         const topic = args.topic || '';
@@ -52,7 +52,16 @@ export default class PushNotificationService {
         const androidNotificationChannel = args.androidNotificationChannel || '';
         const androidImageUrl = args.androidImageUrl || '';
 
-        const notification: NotificationObject = new NotificationObject({title, message, topic, sound, pushIconUrl, androidColor, androidNotificationChannel, androidImageUrl});
+        const notification: NotificationObject = new NotificationObject({
+            title,
+            message,
+            topic,
+            sound,
+            pushIconUrl,
+            androidColor,
+            androidNotificationChannel,
+            androidImageUrl
+        });
 
         return notification;
     }
